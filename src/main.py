@@ -1,19 +1,18 @@
-from block_markdown import markdown_to_blocks
+import os
+import shutil
+
+from copystatic import copy_files_recursive
+
+dir_path_static = "./static"
+dir_path_public= "./public"
 
 def main():
-    test_md = """# Heading
+    # print("Deleting public directory...")
+    if os.path.exists(dir_path_public):
+        shutil.rmtree(dir_path_public)
 
-
-Paragraph
-text here
-
-
-
-* List item
-* List item
-"""
-    print(markdown_to_blocks(test_md))
-
+    # print("copying Static files to public directory...")
+    copy_files_recursive(dir_path_static, dir_path_public)
 
 if __name__ == "__main__":
     main()
